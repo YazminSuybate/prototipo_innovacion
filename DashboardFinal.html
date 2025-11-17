@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Estado Actual</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.svg" style="width: 450px;" alt="Logo Southern Copper" class="logo">
+                <h1 class="company-name">SOUTHERN COPPER</h1>
+                <p class="company-subtitle">SOUTHERN PERU</p>
+            </div>
+            <nav>
+                <div class="menu-section">
+                    <p class="menu-title">MENU</p>
+                    <ul>
+                        <li class="active"><i class="material-icons">dashboard</i>Dashboard</li>
+                        <li><i class="material-icons">event_note</i>Gestión de Incidencias</li>
+                        <li><i class="material-icons">cloud</i>Sensores de aire</li>
+                        <li><i class="material-icons">opacity</i>Sensores de Agua</li>
+                        <li><i class="material-icons">grass</i>Sensores de Suelo</li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2>Dashboard — estado actual</h2>
+                        <p id="last-update">Última actualización: 7/10/2025, 10:33:16 p. m.</p>
+                    </div>
+                    <button id="update-data-btn" class="update-button">
+                        <i class="material-icons">refresh</i> Actualizar Datos
+                    </button>
+                </div>
+            </header>
+
+            <div class="two-column-layout">
+
+                <section class="main-content-column">
+
+                    <div class="quality-cards-row">
+                        <div class="card quality-card purple-bg" id="aire-quality">
+                            <p class="card-title">Calidad del aire</p>
+                            <p class="value" id="aire-value">16.8 <span class="unit">µg/m³</span></p>
+                            <div class="status-tag alerta" id="aire-status">Alerta</div>
+                            <p class="label">PM2.5</p>
+                        </div>
+                        <div class="card quality-card purple-bg" id="agua-quality">
+                            <p class="card-title">Calidad del Agua</p>
+                            <p class="value" id="agua-value">0.037 <span class="unit">mg/L</span></p>
+                            <div class="status-tag normal" id="agua-status">Normal</div>
+                            <p class="label">Metales</p>
+                        </div>
+                        <div class="card quality-card purple-bg" id="suelo-quality">
+                            <p class="card-title">Calidad del Suelo</p>
+                            <p class="value" id="suelo-value">934 <span class="unit">ppm</span></p>
+                            <div class="status-tag peligro" id="suelo-status">Peligro</div>
+                            <p class="label">pH/Metales</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container-row">
+                        <div class="map-container">
+                            <div class="sensor-info-box" id="sensor-info-box">
+                                <p class="box-title">Sensor Suelo</p>
+                                <p>Valor: <span id="box-value">934 ppm</span></p>
+                                <p>Estado: <span id="box-status">Peligro</span></p>
+                                <p>Ubicación: <span id="box-location">Zona C</span></p>
+                            </div>
+
+                            <img src="https://media.istockphoto.com/id/1398268546/es/vector/ilustraci%C3%B3n-vectorial-de-la-ubicaci%C3%B3n-de-la-ciudad-vista-superior-detallada-concepto-de.jpg?s=612x612&w=0&k=20&c=PSIhvaA6822ep7TdJBJS4XDqofwIwwYeoQMBNyYWW40="
+                                class="map-image" alt="Mapa de la zona monitoreada con puntos de sensores.">
+
+                        </div>
+                    </div>
+
+                    <div class="history-table-row">
+                        <div class="history-table-container">
+                            <h3>Historial de lecturas</h3>
+                            <div class="table-controls">
+                                <div class="filter-dropdown">
+                                    Filtro: Todos
+                                    <div class="dropdown-content">
+                                        <a href="#" data-filter="Todos">Todos</a>
+                                        <a href="#" data-filter="Aire">Aire</a>
+                                        <a href="#" data-filter="Agua">Agua</a>
+                                        <a href="#" data-filter="Suelo">Suelo</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Sensor</th>
+                                        <th>Valor</th>
+                                        <th>Ubicación</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="history-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+                <aside class="recent-alerts-column">
+                    <div class="recent-alerts dark-bg">
+                        <h3>Alertas Recientes</h3>
+                        <div class="alert-list" id="alert-list">
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,479 @@
+:root {
+    /* --- PALETA CORPORATIVA ROJA (Sidebar) --- */
+    --primary-red: #8B0000; /* Rojo principal (Southern Copper) */
+    --hover-red: #A52A2A;   /* Rojo para el efecto hover */
+    
+    /* --- COLORES GENERALES --- */
+    --text-dark-gray: #333333; /* Texto principal (negro/gris oscuro) */
+    --text-light-gray: #555555; /* Texto secundario, títulos de menú */
+    --secondary-bg: #f5f5f5; /* Fondo general de la aplicación */
+    --sidebar-bg: #ffffff; /* Fondo del sidebar y elementos blancos */
+
+    /* --- FONDOS DEL DASHBOARD (Diseño Grisáceo/Oscuro) --- */
+    --card-quality-bg: #e5e5f0; /* Fondo para Tarjetas de Calidad (Gris/Morado claro) */
+    --alerts-dark-bg: #555569; /* Fondo para Alertas Recientes (Gris Oscuro) */
+    --alerts-text-light: #ffffff; /* Color de letra en el bloque de Alertas */
+    --alerts-time-light: #c0c0c0; /* Color de la hora/prioridad en el bloque de Alertas */
+    --map-green-bg: #b9d79e; /* Fondo de simulación del Mapa (Verde/Tierra) */
+    --card-bg: #ffffff; /* Fondo para Historial */
+
+    /* --- COLORES DE ESTADO (Funcionalidad) --- */
+    --alerta-color: #ffc107; /* Amarillo (Alerta) */
+    --peligro-color: #f44336; /* Rojo (Peligro) */
+    --normal-color: #4caf50; /* Verde (Normal) */
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: var(--secondary-bg);
+    color: var(--text-dark-gray);
+    line-height: 1.6;
+}
+
+/* Contenedor Principal del Dashboard */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar (Menú Lateral) --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    display: flex; 
+    flex-direction: column;
+}
+
+/* Estilos para el logo en el sidebar */
+.sidebar-header {
+    padding: 0 20px 20px;
+    text-align: center;
+}
+
+.sidebar-header .logo {
+    width: 100px; 
+    height: auto;
+    max-width: 80%;
+}
+
+.sidebar nav {
+    flex-grow: 1;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.menu-title {
+    color: var(--text-light-gray); 
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    color: var(--text-dark-gray);
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover (pasar el mouse por encima) */
+.sidebar li:hover {
+    background-color: var(--hover-red); /* Fondo rojo al hacer hover */
+    color: var(--sidebar-bg); /* Letras blancas al hacer hover */
+}
+
+/* Estado Activo */
+.sidebar li.active {
+    background-color: var(--primary-red); /* Fondo rojo principal para el activo */
+    color: white; /* Letras blancas para el activo */
+    font-weight: bold;
+}
+
+.sidebar li .material-icons {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Encabezado del Dashboard */
+.dashboard-header {
+    margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+}
+
+.dashboard-header p {
+    color: var(--text-light-gray);
+    font-size: 0.9em;
+}
+
+/* --- LAYOUT DE 2 COLUMNAS (CONTENEDOR PRINCIPAL) --- */
+
+.two-column-layout {
+    display: flex;
+    gap: 20px; 
+}
+
+/* COLUMNA 1: Contenido Principal (Calidades, Mapa, Historial) */
+.main-content-column {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+/* COLUMNA 2: Alertas Recientes */
+.recent-alerts-column {
+    width: 350px; 
+    flex-shrink: 0; 
+}
+
+
+/* --- FILA 1: TARJETAS DE CALIDAD (QUALITY CARDS) --- */
+
+.quality-cards-row {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quality-card {
+    /* Estilo de la nueva imagen */
+    background-color: var(--card-quality-bg); 
+    color: var(--text-dark-gray);
+    
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px; 
+    text-align: center;
+    flex: 1;
+}
+
+.card-title {
+    font-size: 0.85em; 
+    color: var(--text-light-gray);
+    margin-bottom: 5px;
+}
+
+.quality-card .value {
+    font-size: 2.2em; 
+    font-weight: 600;
+    margin: 5px 0 10px;
+    line-height: 1.1;
+}
+
+.quality-card .unit {
+    font-size: 0.5em; 
+    font-weight: normal;
+    color: var(--text-light-gray);
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 3px 10px; 
+    border-radius: 20px;
+    font-size: 0.7em; 
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 5px; 
+}
+
+.status-tag.alerta { background-color: var(--alerta-color); color: var(--text-dark-gray); }
+.status-tag.normal { background-color: var(--normal-color); }
+.status-tag.peligro { background-color: var(--peligro-color); }
+
+.quality-card .label {
+    font-size: 0.7em;
+    color: var(--text-light-gray);
+}
+
+
+/* --- COLUMNA 2: ALERTAS RECIENTES (RECENT ALERTS) --- */
+
+.recent-alerts {
+    width: 100%; 
+    background-color: var(--alerts-dark-bg); /* Fondo gris oscuro */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: var(--alerts-text-light); /* Texto principal blanco */
+    /* Asegurar que el contenedor tenga una altura mínima para llenar la columna */
+    min-height: 100%;
+}
+
+.recent-alerts h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alert-item {
+    padding: 10px 15px; 
+    border-radius: 4px;
+    font-size: 0.9em;
+    line-height: 1.2;
+    background-color: transparent !important; 
+    color: var(--alerts-text-light); 
+}
+
+.alert-item.alerta { 
+    border-left: 5px solid var(--alerta-color); 
+    font-weight: 500;
+}
+.alert-item.peligro { 
+    border-left: 5px solid var(--peligro-color); 
+    font-weight: 500;
+}
+
+.alert-item .alert-time {
+    font-size: 0.8em; 
+    color: var(--alerts-time-light); 
+    margin-top: 3px;
+    font-weight: normal;
+}
+
+
+/* --- FILA 2: CONTENEDOR DEL MAPA (MAP CONTAINER) --- */
+
+.map-container-row {
+    flex-grow: 1; 
+}
+
+.map-container {
+    position: relative;
+    background-color: var(--map-green-bg); 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 400px;
+    padding: 0; 
+}
+
+/* Estilos de la imagen del mapa */
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; 
+    border-radius: 8px; 
+}
+
+.map-container::before {
+    content: none;
+}
+
+.sensor-info-box {
+    position: absolute;
+    top: 20px; 
+    left: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    width: 150px; 
+    font-size: 0.85em; 
+    /* ❌ CORRECCIÓN 2: Se eliminó el borde izquierdo fijo (ej: border-left: 5px solid var(--peligro-color);) */
+    /* Lo manejamos con JS, pero al quitar la propiedad, aseguramos que se muestre sin franja. */
+    border-left: none; /* Aseguramos que no haya borde por defecto */
+}
+
+.sensor-info-box .box-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sensor-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    z-index: 15;
+    transition: transform 0.2s;
+}
+
+.sensor-point:hover {
+    transform: scale(1.3);
+}
+
+/* 🟢 COLORES DE ESTADO (Prioridad de Peligro) */
+.sensor-point.peligro { background-color: var(--peligro-color); }
+.sensor-point.alerta { background-color: var(--alerta-color); }
+.sensor-point.normal { background-color: var(--normal-color); }
+
+/* 🌳 NUEVOS COLORES DE TIPO DE SENSOR */
+/* Se usarán si quieres que los puntos siempre reflejen el tipo de sensor, 
+   independientemente de su estado. */
+
+/* Sensores de Tierra (Verde) */
+.sensor-point.soil { 
+    background-color: #4CAF50; /* O un verde tierra, si prefieres: #8B4513 (marrón) */
+}
+
+/* Sensores de Agua (Azul) */
+.sensor-point.water { 
+    background-color: #2196F3; /* Azul */
+}
+
+/* Sensores de Aire (Naranja) */
+.sensor-point.air { 
+    background-color: #FF9800; /* Naranja */
+}
+
+/* --- FILA 3: HISTORIAL DE LECTURAS (HISTORY TABLE) --- */
+
+.history-table-row {
+    /* Contenedor de la fila */
+}
+
+.history-table-container {
+    width: 100%; 
+    background-color: var(--card-bg); 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.history-table-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+/* Filtro (Dropdown) */
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.filter-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-dark-gray);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary-red); 
+    color: white;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.history-table th, .history-table td {
+    padding: 10px 5px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.history-table th {
+    background-color: var(--secondary-bg);
+    font-weight: bold;
+    color: var(--text-light-gray);
+}
+
+/* Colores de estado en la tabla */
+.status-col.alerta { color: var(--alerta-color); font-weight: bold; }
+.status-col.peligro { color: var(--peligro-color); font-weight: bold; }
+.status-col.normal { color: var(--normal-color); }
+
+/* --- Estilo del Botón de Actualización --- */
+.update-button {
+    background-color: var(--primary-red); /* Usamos el rojo corporativo */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.update-button:hover {
+    background-color: var(--hover-red);
+}
+
+.update-button:active {
+    transform: scale(0.98);
+}
